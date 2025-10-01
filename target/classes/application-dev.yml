@@ -1,0 +1,62 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: dcloud-aipan
+  servlet:
+    multipart:
+      max-file-size: 10MB  		# 设置单个文件最大大小为10MB
+      max-request-size: 100MB  	# 设置多个文件大小为100MB
+  # db
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.19.151:3306/dcloud_aipan?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: Jxbd123
+  #redis
+  data:
+    redis:
+      host: 192.168.19.150
+      port: 6379
+      password: jxbd
+
+# mybatis-plus??
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: del
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# minio
+minio:
+  endpoint: http://192.168.19.152:9000
+  access-key: minio_root
+  access-secret: minio_123456
+  bucket-name: ceshi20250302
+  avatar-bucket-name: avatar
+
+
+ai:
+  key: sk-026cde82909d4e3eba28ccd7c83d5bb3
+
+stream:
+  base-url: http://localhost:8000
+  chat-stream-path: /api/chat/stream
+  timeout:
+    connect: 30s
+    response: 5m
+    read: 5m
+    write: 5m
+  pool:
+    max-connections: 100
+    max-idle-time: 5m
+    max-life-time: 10m
+    pending-acquire-timeout: 30s
+    evict-in-background: 120s
+
+
