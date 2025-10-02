@@ -15,12 +15,12 @@ import java.net.InetAddress;
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan("priv.muller.mapper")
-public class DcloudAipanApplication {
+public class AipanApplication {
 
 
 	@SneakyThrows
 	public static void main(String[] args) {
-		ConfigurableApplicationContext application = SpringApplication.run(DcloudAipanApplication.class, args);
+		ConfigurableApplicationContext application = SpringApplication.run(AipanApplication.class, args);
 		Environment env = application.getEnvironment();
 		log.info("\n----------------------------------------------------------\n\t" +
 						"Application '{}' is running! Access URLs:\n\t" +
