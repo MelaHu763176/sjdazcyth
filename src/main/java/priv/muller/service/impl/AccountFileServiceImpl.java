@@ -3,6 +3,7 @@ package priv.muller.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import priv.muller.component.StoreEngine;
+import priv.muller.controller.req.FolderCreateReq;
 import priv.muller.dto.AccountFileDTO;
 import priv.muller.enums.FileTypeEnum;
 import priv.muller.enums.FolderFlagEnum;
@@ -199,6 +200,22 @@ public class AccountFileServiceImpl implements AccountFileService {
         }
 
         return selectCount;
+    }
+
+    /**
+     * 创建文件夹
+     * @param req
+     */
+    @Override
+    public Long createFolder(FolderCreateReq req) {
+
+        AccountFileDTO accountFileDTO = AccountFileDTO.builder().accountId(req.getAccountId())
+                .parentId(req.getParentId())
+                .fileName(req.getFolderName())
+                .isDir(FolderFlagEnum.YES.getCode())
+                .build();
+
+        return saveAccountFile(accountFileDTO);
 
     }
 }
