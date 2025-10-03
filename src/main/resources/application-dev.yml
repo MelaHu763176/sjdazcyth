@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: dcloud-aipan
+    name: priv_sjdazcyth
   servlet:
     multipart:
       max-file-size: 10MB  		# 设置单个文件最大大小为10MB
@@ -11,7 +11,7 @@ spring:
   # db
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.19.151:3306/dcloud_aipan?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.19.151:3306/priv_sjdazcyth?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: Jxbd123
   #redis

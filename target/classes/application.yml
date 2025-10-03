@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: dcloud-aipan
+    name: priv_sjdazcyth
   profiles:
     active: dev
 
