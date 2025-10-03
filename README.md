@@ -5,8 +5,18 @@
 # minio部署
 
 ```shell
-docker run -d --restart=always --name minio --hostname minio-server -p 9000:9000 -p 9001:9001 -v /minio/data:/bitnami/minio/data -e MINIO_ROOT_USER="minio_root" -e MINIO_ROOT_PASSWORD="minio_123456" -e MINIO_DEFAULT_BUCKETS="bucket" -e "MINI0_SERVER_URL=http://192.168.19.152:9000" bitnami/minio:2023.12.7
+docker run 
+-d --restart=always 
+--name minio 
+--hostname minio-server -p 9000:9000 -p 9001:9001 
+-v /minio/data:/bitnami/minio/data 
+-e MINIO_ROOT_USER="minio_root" 
+-e MINIO_ROOT_PASSWORD="minio_123456" 
+-e MINIO_DEFAULT_BUCKETS="bucket" 
+-e "MINI0_SERVER_URL=http://192.168.19.152:9000" 
+bitnami/minio:2023.12.7
 ```
+
 
 
 # AWS-S3对象存储服务API
