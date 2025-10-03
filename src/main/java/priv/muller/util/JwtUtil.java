@@ -16,7 +16,6 @@ public class JwtUtil {
     // JWT的主题
     private static final String LOGIN_SUBJECT = "MULLER";
 
-
     //分享主题
     private static final String SHARE_SUBJECT = "MULLER_SHARE";
 
