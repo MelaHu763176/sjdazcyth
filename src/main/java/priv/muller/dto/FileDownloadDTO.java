@@ -1,0 +1,14 @@
+package priv.muller.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class FileDownloadDTO {
+    private String fileName;
+
+    private String downloadUrl;
+}

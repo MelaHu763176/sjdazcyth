@@ -22,7 +22,7 @@ public class AccountServiceTest {
 
     @Test
     public void testRegister(){
-        AccountRegisterReq registerReq = AccountRegisterReq.builder().phone("123").password("123").username("老王").avatarUrl("xdclass.net").build();
+        AccountRegisterReq registerReq = AccountRegisterReq.builder().phone("123").password("123").username("muller").avatarUrl("192.168.19.152").build();
         accountService.register(registerReq);
     }
 
