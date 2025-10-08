@@ -81,5 +81,49 @@ public class AccountFileController {
         return JsonData.buildSuccess(list);
     }
 
+    /**
+     * 文件批量移动
+     */
+    @PostMapping("move_batch")
+    @Operation(summary = "文件批量移动", description = "文件批量移动")
+    public JsonData moveBatch(
+            @Parameter(description = "文件批量移动请求对象", required = true) @RequestBody FileBatchReq req) {
+        req.setAccountId(LoginInterceptor.threadLocal.get().getId());
+        accountFileService.moveBatch(req);
+        return JsonData.buildSuccess();
+    }
 
+    /**
+     * 文件批量删除
+     */
+    @PostMapping("del_batch")
+    public JsonData delBatch(@RequestBody FileDelReq req) {
+        req.setAccountId(LoginInterceptor.threadLocal.get().getId());
+
+        accountFileService.delBatch(req);
+
+        return JsonData.buildSuccess();
+    }
+
+    /**
+     * 文件复制接口
+     */
+    @PostMapping("copy_batch")
+    @Operation(summary = "文件批量复制", description = "文件批量复制")
+    public JsonData copyBatch(
+            @Parameter(description = "文件批量复制请求对象", required = true) @RequestBody FileBatchReq req) {
+        req.setAccountId(LoginInterceptor.threadLocal.get().getId());
+        accountFileService.copyBatch(req);
+        return JsonData.buildSuccess();
+    }
+
+    /**
+     * 文件秒传接口, true就是文件秒传成功，false失败，需要重新调用上传接口
+     */
+    @PostMapping("second_upload")
+    public JsonData secondUpload(@RequestBody FileSecondUploadReq req) {
+        req.setAccountId(LoginInterceptor.threadLocal.get().getId());
+        Boolean flag = accountFileService.secondUpload(req);
+        return JsonData.buildSuccess(flag);
+    }
 }

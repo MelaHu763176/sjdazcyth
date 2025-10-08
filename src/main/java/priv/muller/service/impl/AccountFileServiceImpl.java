@@ -286,7 +286,7 @@ public class AccountFileServiceImpl implements AccountFileService {
     @Override
     public void moveBatch(FileBatchReq req) {
 
-        // 检查被移动的文件ID是否合法
+        // 检查被移动的文件ID是否合法：检查所需移动的文件是否都存在，根据最终的文件数量来判断
         List<AccountFileDO> accountFileDOList =  checkFileIdLegal(req.getFileIds(),req.getAccountId());
         //检查目标文件夹ID是否合法,包括子文件夹
         checkTargetParentIdLegal(req);
@@ -546,12 +546,13 @@ public class AccountFileServiceImpl implements AccountFileService {
 
     /**
      * 检查被移动的文件ID是否合法
+     * 检查所需移动的文件是否都存在，根据最终的文件数量来判断
      * @param fileIds
      * @param accountId
      * @return
      */
     public List<AccountFileDO> checkFileIdLegal(List<Long> fileIds, Long accountId) {
-
+        //        检查所需移动的文件是否都存在，根据最终的文件数量来判断
         List<AccountFileDO> accountFileDOList = accountFileMapper
                 .selectList(new QueryWrapper<AccountFileDO>().in("id", fileIds).eq("account_id", accountId));
 
