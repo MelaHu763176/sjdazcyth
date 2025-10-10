@@ -171,8 +171,8 @@ class AmazonS3ClientTests {
 	 */
 	@Test
 	public void testInitiateMultipartUploadTask() {
-		String bucketName = "ai-pan";
-		String objectKey = "/aa/bb/cc/666.txt";
+		String bucketName = "ceshi20250302";
+		String objectKey = "C:\\Users\\humaonan\\Downloads\\Miniconda3-latest-Linux-x86_64.sh";
 
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType("text/plain");
@@ -194,13 +194,17 @@ class AmazonS3ClientTests {
 	@Test
 	public void testGenePreSignedUrls() {
 
-		String bucketName = "ai-pan";
-		String objectKey = "/aa/bb/cc/666.txt";
+		String bucketName = "ceshi20250302";
+		String objectKey = "C:\\Users\\humaonan\\Downloads\\Miniconda3-latest-Linux-x86_64.sh";
 		//分片数量，这里配置4个
 		int chunkCount = 4;
-		String uploadId = "NzVhZjVjY2YtNzBhNS00YWE0LThjYjQtZmQzNmFkMTQyNTRmLmY1OGY2ZTEyLTY5YjYtNDQ3ZC04ZWMxLWJlZTVmOGFmZTkzYw";
+		String uploadId = "N2M1ZDcxYTEtMTFlMy00MjhiLWI2YWQtNjM3MzA1NjlhMTYzLjM3MjM0NmVmLTQyNmQtNDI0NS05YjAyLWFiNGMwZmJkYzVmNg";
+//        preSignedUrl:http://192.168.19.152:9000/ceshi20250302/C%3A%5CUsers%5Chumaonan%5CDownloads%5CMiniconda3-latest-Linux-x86_64.sh?uploadId=N2M1ZDcxYTEtMTFlMy00MjhiLWI2YWQtNjM3MzA1NjlhMTYzLjM3MjM0NmVmLTQyNmQtNDI0NS05YjAyLWFiNGMwZmJkYzVmNg&partNumber=1&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20251009T233711Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=minio_root%2F20251009%2FUS_EAST_1%2Fs3%2Faws4_request&X-Amz-Signature=d1277c61efcadd6bc971e0a40f4f13ee3c88c39d3f3241b11def8f3e80621a8c
+//        preSignedUrl:http://192.168.19.152:9000/ceshi20250302/C%3A%5CUsers%5Chumaonan%5CDownloads%5CMiniconda3-latest-Linux-x86_64.sh?uploadId=N2M1ZDcxYTEtMTFlMy00MjhiLWI2YWQtNjM3MzA1NjlhMTYzLjM3MjM0NmVmLTQyNmQtNDI0NS05YjAyLWFiNGMwZmJkYzVmNg&partNumber=2&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20251009T233711Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=minio_root%2F20251009%2FUS_EAST_1%2Fs3%2Faws4_request&X-Amz-Signature=e9675cd709b2c7c9f85ed81188c486594093f9d4201b33ca28f63eafd7f7d971
+//        preSignedUrl:http://192.168.19.152:9000/ceshi20250302/C%3A%5CUsers%5Chumaonan%5CDownloads%5CMiniconda3-latest-Linux-x86_64.sh?uploadId=N2M1ZDcxYTEtMTFlMy00MjhiLWI2YWQtNjM3MzA1NjlhMTYzLjM3MjM0NmVmLTQyNmQtNDI0NS05YjAyLWFiNGMwZmJkYzVmNg&partNumber=3&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20251009T233711Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=minio_root%2F20251009%2FUS_EAST_1%2Fs3%2Faws4_request&X-Amz-Signature=8dd36206866963a1375eeed134a81c2730768c5a1b805d7585caa743aa6ed8c0
+//        preSignedUrl:http://192.168.19.152:9000/ceshi20250302/C%3A%5CUsers%5Chumaonan%5CDownloads%5CMiniconda3-latest-Linux-x86_64.sh?uploadId=N2M1ZDcxYTEtMTFlMy00MjhiLWI2YWQtNjM3MzA1NjlhMTYzLjM3MjM0NmVmLTQyNmQtNDI0NS05YjAyLWFiNGMwZmJkYzVmNg&partNumber=4&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20251009T233711Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=minio_root%2F20251009%2FUS_EAST_1%2Fs3%2Faws4_request&X-Amz-Signature=09297f7b422fe055dbe8d9a04f8f7a4be0f05d1d70643444edecc2d343111916
 
-		//存储预签名的地址
+		//存储预签名的地址3
 		List<String> preSignedUrls = new ArrayList<>(chunkCount);
 		//遍历每个分片，生成预签名地址
 		for (int i = 1; i <= chunkCount; i++) {
@@ -232,7 +236,7 @@ class AmazonS3ClientTests {
 		String objectKey = "/aa/bb/cc/666.txt";
 		//分片数量，这里配置4个
 		int chunkCount = 4;
-		String uploadId = "NzVhZjVjY2YtNzBhNS00YWE0LThjYjQtZmQzNmFkMTQyNTRmLmY1OGY2ZTEyLTY5YjYtNDQ3ZC04ZWMxLWJlZTVmOGFmZTkzYw";
+		String uploadId = "N2M1ZDcxYTEtMTFlMy00MjhiLWI2YWQtNjM3MzA1NjlhMTYzLjM3MjM0NmVmLTQyNmQtNDI0NS05YjAyLWFiNGMwZmJkYzVmNg";
 
 		//创建一个列出分片请求
 		ListPartsRequest listPartsRequest = new ListPartsRequest(bucketName, objectKey, uploadId);
