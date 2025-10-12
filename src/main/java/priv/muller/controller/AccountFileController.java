@@ -5,8 +5,10 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import priv.muller.controller.req.*;
 import priv.muller.dto.AccountFileDTO;
+import priv.muller.dto.FileChunkDTO;
 import priv.muller.dto.FolderTreeNodeDTO;
 import priv.muller.service.AccountFileService;
+import priv.muller.service.FileChunkService;
 import priv.muller.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import java.util.List;
 public class AccountFileController {
     @Autowired
     private AccountFileService accountFileService;
+    @Autowired
+    private FileChunkService fileChunkService;
 
     /**
      * 普通小文件上传接口
@@ -126,4 +130,27 @@ public class AccountFileController {
         Boolean flag = accountFileService.secondUpload(req);
         return JsonData.buildSuccess(flag);
     }
+
+    /**
+     * 1-创建分片上传任务
+     */
+    @PostMapping("init_file_chunk_task")
+    public JsonData initFileChunkTask(@RequestBody FileChunkInitTaskReq req) {
+        req.setAccountId(LoginInterceptor.threadLocal.get().getId());
+        FileChunkDTO fileChunkDTO = fileChunkService.initFileChunkTask(req);
+        return JsonData.buildSuccess(fileChunkDTO);
+    }
+    /**
+     * 2-获取分片上传地址，返回minio临时签名地址
+     */
+    @GetMapping("/get_file_chunk_upload_url/{identifier}/{partNumber}")
+    public JsonData getFileChunkUploadUrl(@PathVariable("identifier") String identifier
+            ,@PathVariable("partNumber") int partNumber){
+
+        Long accountId = LoginInterceptor.threadLocal.get().getId();
+        String url = fileChunkService.genPreSignUploadUrl(accountId, identifier, partNumber);
+        return JsonData.buildSuccess(url);
+    }
+
+
 }
