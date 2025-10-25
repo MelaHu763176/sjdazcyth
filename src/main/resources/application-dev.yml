@@ -42,7 +42,7 @@ minio:
 
 
 ai:
-  key: sk-026cde82909d4e3eba28ccd7c83d5bb3
+  key: sk-xxxxxx
 
 stream:
   base-url: http://localhost:8000
