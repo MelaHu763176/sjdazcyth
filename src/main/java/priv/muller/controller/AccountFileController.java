@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import priv.muller.controller.req.*;
 import priv.muller.dto.AccountFileDTO;
 import priv.muller.dto.FileChunkDTO;
+import priv.muller.dto.FileDownloadDTO;
 import priv.muller.dto.FolderTreeNodeDTO;
 import priv.muller.service.AccountFileService;
 import priv.muller.service.FileChunkService;
@@ -152,5 +153,49 @@ public class AccountFileController {
         return JsonData.buildSuccess(url);
     }
 
+    /**
+     * 3-合并分片
+     */
+    @PostMapping("merge_file_chunk")
+    public JsonData mergeFileChunk(@RequestBody FileChunkMergeReq req) {
+        req.setAccountId(LoginInterceptor.threadLocal.get().getId());
+        fileChunkService.mergeFileChunk(req);
+        return JsonData.buildSuccess();
+    }
 
+
+    /**
+     * 查询分片上传进度
+     */
+    @GetMapping("/chunk_upload_progress/{identifier}")
+    public JsonData getUploadProgress(@PathVariable("identifier") String identifier) {
+        Long accountId = LoginInterceptor.threadLocal.get().getId();
+        FileChunkDTO fileChunkDTO = fileChunkService.listFileChunk(accountId, identifier);
+        return JsonData.buildSuccess(fileChunkDTO);
+    }
+
+    /**
+     * 搜索文件
+     * @param search
+     * @return
+     */
+    @GetMapping("search")
+    public JsonData search(@RequestParam("search") String search) {
+        Long accountId = LoginInterceptor.threadLocal.get().getId();
+        List<AccountFileDTO> list = accountFileService.search(accountId, search);
+        return JsonData.buildSuccess(list);
+    }
+
+
+    /**
+     * 多文件下载URL获取接口
+     */
+    @PostMapping("batch_download_url")
+    public JsonData batchDownloadUrl(@RequestBody FileDownloadReq req) {
+        Long accountId = LoginInterceptor.threadLocal.get().getId();
+        req.setAccountId(accountId);
+        List<FileDownloadDTO> fileDownloadVOList = accountFileService.batchDownloadUrl(req);
+        return JsonData.buildSuccess(fileDownloadVOList);
+
+    }
 }
